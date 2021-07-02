@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 /*
 
 Mobbing Exercise
@@ -29,6 +25,36 @@ If at least three points have been scored by each side and a player has one more
 
 */
 
+type Game struct {
+	player1Score int
+	player2Score int
+}
+
 func main() {
-	fmt.Println("Hello World")
+	// game := NewGame()
+}
+
+func NewGame() *Game {
+	return &Game{player1Score: 0, player2Score: 0}
+}
+
+func (g *Game) getScore() string {
+
+	player1Score := evalScore(g.player1Score)
+	player2Score := evalScore(g.player2Score)
+
+	if player1Score == player2Score {
+		return player1Score + " All"
+	}
+
+	return ""
+}
+
+func evalScore(score int) string {
+	switch score {
+	case 0:
+		return "Love"
+	default:
+		return ""
+	}
 }
