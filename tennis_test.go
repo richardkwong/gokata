@@ -35,6 +35,42 @@ func TestEvalScore(t *testing.T) {
 	})
 }
 
+func TestWinnerPlayerOne(t *testing.T) {
+	t.Run("Returns Player One Wins", func(t *testing.T) {
+		Setup()
+		game.player1Score = 4
+		game.player2Score = 2
+	
+		result := game.getWinner()
+
+		assert(t, result == 1, fmt.Sprintf(`result != 1; result == %d`, result))
+	})
+}
+
+func TestWinnerPlayerTwo(t *testing.T) {
+	t.Run("Returns Player Two Wins", func(t *testing.T) {
+		Setup()
+		game.player1Score = 0
+		game.player2Score = 4
+	
+		result := game.getWinner()
+
+		assert(t, result == 2, fmt.Sprintf(`result != 2; result == %d`, result))
+	})
+}
+
+func TestNoWinner(t *testing.T) {
+	t.Run("Returns No Winner", func(t *testing.T) {
+		Setup()
+		game.player1Score = 3
+		game.player2Score = 4
+	
+		result := game.getWinner()
+
+		assert(t, result == 0, fmt.Sprintf(`result != 0; result == %d`, result))
+	})
+}
+
 func assert(t testing.TB, condition bool, message string) {
 	if !condition {
 		t.Error(message)

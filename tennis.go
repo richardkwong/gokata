@@ -58,3 +58,13 @@ func evalScore(score int) string {
 		return ""
 	}
 }
+
+func (g *Game) getWinner() int {
+	if (g.player1Score >= 4 && (g.player1Score - g.player2Score >= 2)) {
+		return 1
+	} else if (g.player2Score >= 4 && (g.player2Score - g.player1Score >= 2)) {
+		return 2
+	}
+	
+	return 0
+}
